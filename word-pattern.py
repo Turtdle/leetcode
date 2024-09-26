@@ -21,3 +21,4 @@ def wordPattern(pattern: str, s: str) -> bool:
         else:
             if d[pattern[i]] != s[i]:
                 return False
+    return True

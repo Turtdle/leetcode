@@ -1,21 +1,32 @@
 def isValid( s: str) -> bool:
-    d = {'(' : 0, ')' : 0, '{' : 0, '}' : 0, '[' : 0, ']' : 0}
-    for c in s:
-        d[c] += 1
-    print(d)
-    return d['('] == d[')'] and d['{'] == d['}'] and d['['] == d[']'] and d['('] % 2 == 0 and d['{'] % 2 == 0 and d['['] % 2 == 0 and d[')'] % 2 == 0 and d['}'] % 2 == 0 and d[']'] % 2 == 0
+    stack = []
+    for char in s:
+        if char == '(' or char == '{' or char == '[':
+            stack.append(char)
+        else:
+            if not stack:
+                return False
+            if char == ')' and stack[-1] == '(':
+                stack.pop()
+            elif char == '}' and stack[-1] == '{':
+                stack.pop()
+            elif char == ']' and stack[-1] == '[':
+                stack.pop()
+            else:
+                return False
+    return not stack
+def isValidRecursive(s, open_paran):
+    parans = {'(': ')', '{': '}', '[': ']'}
+    if not s:
+        return not open_paran
+    if s[0] in parans:
+        return isValidRecursive(s[1:], open_paran + [s[0]])
+    if not open_paran:
+        return False
+    if parans[open_paran[-1]] == s[0]:
+        return isValidRecursive(s[1:], open_paran[:-1])
+    return False
 
-def main():
-    print(isValid("()"))
-    # Output: True
-    print(isValid("()[]{}"))
-    # Output: True
-    print(isValid("(]"))
-    # Output: False
-    print(isValid("([)]"))
-    # Output: False
-    print(isValid("{[]}"))
-    # Output: True
 
-if __name__ == '__main__':
-    main()
+
+
