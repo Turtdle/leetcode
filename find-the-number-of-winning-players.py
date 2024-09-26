@@ -1,0 +1,1 @@
+def winningPlayerCount(n: int, pick: list[list[int]]) -> int:
