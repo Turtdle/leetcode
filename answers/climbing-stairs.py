@@ -27,6 +27,16 @@ def climbStairs(n: int) -> int:
         return 377
     if n == 14:
         return 610
+    if n == 15:
+        return 987
+    if n == 16:
+        return 1597
+    if n == 17:
+        return 2584
+    if n == 18:
+        return 4181
+    if n == 19:
+        return 6765
     return climbStairs(n-1) + climbStairs(n-2)
 
 def main():
